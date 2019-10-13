@@ -30,12 +30,23 @@
             <a-box position="10 10 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
             <a-sky color="#ECECEC"></a-sky>
         </a-scene> -->
-        <a-scene>
+        <!-- <a-scene>
             <a-assets>
                 <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
             </a-assets>
             <a-entity text-geometry="value: What's up"></a-entity>
             <a-entity text-geometry="value: Dog?; font: #optimerBoldFont"></a-entity>
+        </a-scene> -->
+        <a-scene>
+            <a-assets>
+                <img id="my-image" src="../test_images/1.jpg">
+            </a-assets>
+
+            <!-- Using the asset management system. -->
+            <a-image src="#my-image" position="-1 0.5 -3"></a-image>
+
+            <!-- Defining the URL inline. Not recommended but more comfortable for web developers. -->
+            <!-- <a-image src="another-image.png"></a-image> -->
         </a-scene>
     </div>
 
