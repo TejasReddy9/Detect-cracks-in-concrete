@@ -12,7 +12,7 @@
     <div>
         <h2>Crack Detection</h2>
         <!-- <p id="status">OpenCV.js is loading...</p> -->
-        <img id="inputImg" />
+        <img id="inputImg" style="display: none;" />
 <!--         <input type="file" id="inputImg" accept="image/*;capture=camera"> -->
         <input type="file" id="fileInput" />
         <canvas id="canvasOutput"></canvas>
@@ -111,6 +111,13 @@
             // cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0);
             // You can try more different parameters
             cv.Canny(diff_line, canny, 100, 200, 3, false);
+            
+            
+            let resizedcanny = new cv.Mat();
+            let dsize = new cv.Size(300, 300);
+            // You can try more different parameters
+            cv.resize(canny, resizedcanny, dsize, 0, 0, cv.INTER_AREA);
+
 
 
             let total_pixels = canny.rows * canny.cols
@@ -118,17 +125,15 @@
             let intensity = non_black_pixels*1000/total_pixels
 
             let scale = ""
-            if (intensity == 0){
-                scale = "No crack detected"
-            }
-            else if (intensity > 5){
+            
+            if (intensity > 5){
                 scale = "High intensity crack"
             }
             else if(intensity > 1 && intensity <= 5){
                 scale = "Significant crack"
             }
-            else {
-                scale = "Small crack"
+            else if(intensity <= 1) {
+                scale = "No crack detected"
             }
 
             console.log(scale)
@@ -137,12 +142,13 @@
             window.speechSynthesis.speak(msg);
 
 
-            cv.imshow('canvasOutput', canny);
+            cv.imshow('canvasOutput', resizedcanny);
             mat.delete();
             blur.delete();
             diff_line.delete(); 
             mask.delete();
             canny.delete();
+            resizedcanny.delete();
         };
 
         // function onOpenCvReady() {
