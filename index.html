@@ -5,6 +5,9 @@
     <title>Crack Detection</title>
     <script async src="opencv.js" type="text/javascript"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=8cNaaFuo"></script>
+    <script id="addScriptSrc" type="text/javascript"></script>  
+    <!-- bringto.life quick fix -->
+    <script id="addScriptSrc2" type="text/javascript"></script>
 <!--     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script> -->
     <!-- <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>  -->
 </head>
@@ -56,6 +59,11 @@
     </div>
 
     <script type="text/javascript">
+
+        window.onload = function(){
+            let welcome = "Hi guys, do you see any crack around you? You can try uploading an image, or take a photo, from your camera, and I'll tell you what to do with it if it's really an intense crack."
+            document.getElementById("addScriptSrc").src = "https://app.bringto.life/e?key=dMCzpRAX" 
+        }
 
         /*
         let video = document.getElementById('videoInput');
@@ -131,22 +139,29 @@
             let intensity = non_black_pixels*1000/total_pixels
 
             let scale = ""
-            
+            let scriptSrc = ""
+
             if (intensity > 5){
-                scale = "I see, High intensity crack. I recommend to get this fixed on immediate basis."
+                scale = "I see, High intensity crack. I recommend to, get this fixed, on immediate basis."
+                scriptSrc = "https://app.bringto.life/e?key=ol0pWdBy"
             }
             else if(intensity > 1 && intensity <= 5){
-                scale = "That's a Significant crack, with high potential to be leading to high intensity issues."
+                scale = "That's a Significant crack. Has high potential of leading to a, high intensity issues."
+                scriptSrc = "https://app.bringto.life/e?key=nP9taKeO"
             }
             else if(intensity <= 1) {
-                scale = "No crack detected, do you want to try again."
+                scale = "No crack detected. It looks the existing condition is acceptable. or do you want to try again, with a more closer image?"
+                scriptSrc = "https://app.bringto.life/e?key=A8RxWCYg"
             }
 
             console.log(scale)
 
+            let additionalSentence = "We have some Insurance solutions, to handle these risks scenarios. Click next, to explore more."
+            let additionalSentenceSrc = "https://app.bringto.life/e?key=0dMQ91qJ" 
+
             var msg = new SpeechSynthesisUtterance(scale);
             window.speechSynthesis.speak(msg);
-
+            // document.getElementById("addScriptSrc2").src = scriptSrc
 
             cv.imshow('canvasOutput', resizedcanny);
             mat.delete();
