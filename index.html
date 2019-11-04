@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Crack Detection</title>
+    <link rel="stylesheet" href="https://codepen.io/chriddyp/pen/bWLwgP.css"/>
+    <link rel="stylesheet" href="customstyles.css"/>
     <script async src="opencv.js" type="text/javascript"></script>
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=8cNaaFuo"></script>
     <script id="addScriptSrc" type="text/javascript"></script>  
@@ -15,10 +17,10 @@
     <div>
         <h2>Crack Detection</h2>
         <!-- <p id="status">OpenCV.js is loading...</p> -->
+        <canvas id="canvasOutput"></canvas>
         <img id="inputImg" style="display: none;" />
 <!--         <input type="file" id="inputImg" accept="image/*;capture=camera"> -->
-        <input type="file" id="fileInput" />
-        <canvas id="canvasOutput"></canvas>
+        <input type="file" id="fileInput"/>
     </div>
     
     
@@ -156,11 +158,15 @@
 
             console.log(scale)
 
-            let additionalSentence = "We have some Insurance solutions, to handle these risks scenarios. Click next, to explore more."
-            let additionalSentenceSrc = "https://app.bringto.life/e?key=0dMQ91qJ" 
+            suggestionMsg = "We have some Insurance solutions, to handle these risks scenarios. Click next, to explore more."
 
             var msg = new SpeechSynthesisUtterance(scale);
             window.speechSynthesis.speak(msg);
+
+            setTimeout(function(){
+                var suggMsg = new SpeechSynthesisUtterance(suggestionMsg);
+                window.speechSynthesis.speak(suggMsg);
+            }, 2000)
             // document.getElementById("addScriptSrc2").src = scriptSrc
 
             cv.imshow('canvasOutput', resizedcanny);
